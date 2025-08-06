@@ -94,7 +94,7 @@ router.get("/", async (req, res) => {
 
 router.post('/notify', async (req, res) => {
   const { token, title, body } = req.body;
-  logger.log('Notification request:', req.body);
+  console.log('Notification request:', req.body);
   try {
     await sendNotification({ token, title, body });
     res.json({ message: 'Notification sent' });
