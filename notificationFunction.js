@@ -3,9 +3,12 @@ require("dotenv").config();
 
 const { google } = require("googleapis");
 // 🔐 Path to your service account JSON file
-const serviceAccountJSON = process.env.GOOGLE_APPLICATION_CREDENTIALS
+const isRender = !!process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
+const serviceAccountJSON = isRender
   ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
   : require("./firebase-service-account.json");
+
 const MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
 const PROJECT_ID = process.env.FCM_PROJECT_ID;
 
