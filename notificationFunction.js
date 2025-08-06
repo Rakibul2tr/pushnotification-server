@@ -6,6 +6,8 @@ const { google } = require("googleapis");
 const SERVICE_ACCOUNT_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
 const PROJECT_ID = process.env.FCM_PROJECT_ID;
+console.log('SERVICE_ACCOUNT_PATH',SERVICE_ACCOUNT_PATH);
+
 // 🔑 Get Access Token from Service Account
 async function getAccessToken() {
   const auth = new google.auth.GoogleAuth({
