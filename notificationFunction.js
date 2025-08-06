@@ -18,7 +18,6 @@ async function getAccessToken() {
   const client = await auth.getClient();
   const token = await client.getAccessToken();
 //   console.log('token',token);
-
   return token.token;
 }
  async function sendNotification({ token, title, body }) {
