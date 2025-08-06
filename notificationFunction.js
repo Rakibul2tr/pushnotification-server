@@ -3,15 +3,16 @@ require("dotenv").config();
 
 const { google } = require("googleapis");
 // 🔐 Path to your service account JSON file
-const SERVICE_ACCOUNT_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+const serviceAccountJSON = process.env.GOOGLE_APPLICATION_CREDENTIALS
+  ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+  : require("./firebase-service-account.json");
 const MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
 const PROJECT_ID = process.env.FCM_PROJECT_ID;
-console.log('SERVICE_ACCOUNT_PATH',SERVICE_ACCOUNT_PATH);
 
 // 🔑 Get Access Token from Service Account
 async function getAccessToken() {
   const auth = new google.auth.GoogleAuth({
-    keyFile: SERVICE_ACCOUNT_PATH,
+    credentials: serviceAccountJSON,
     scopes: [MESSAGING_SCOPE],
   });
 
